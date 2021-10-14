@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="id">
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import axios from 'axios';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    
+  },
+  async created(){
+    const token = '09d55adb458a02ab82b7584445af8294d4a7152b'
+    const { data } = await axios.get("https://api.brasil.io/v1/dataset/covid19/caso/data/?is_last=True&state=PB",{
+      headers:{
+        Authorization: `token ${token}`
+      }
+    })
+    console.log(data)
+}
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
